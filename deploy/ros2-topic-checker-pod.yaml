@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ros2-topic-checker
+  namespace: ya
+spec:
+  containers:
+    - name: ros2-topic-checker
+      image: ros:humble-ros-core
+      command: ["/bin/bash", "-c", "sleep infinity"]
+      env:
+        - name: ROS_DOMAIN_ID
+          value: "0"  # Must match the publisher pod's ROS_DOMAIN_ID (default is 0)
+      resources:
+        requests:
+          cpu: "100m"
+          memory: "128Mi"
+        limits:
+          cpu: "200m"
+          memory: "256Mi"
+

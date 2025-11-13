@@ -38,6 +38,7 @@ class MultiTopicPublisher(Node):
 
             self.payload = payload
             self.period = 1.0 / freq_hz
+            self._message_count = 0  # Track number of messages published
 
             # Create publishers for each topic
             print(f"Creating publishers for topics: {self.topics}")
@@ -77,6 +78,13 @@ class MultiTopicPublisher(Node):
             pub.publish(msg)
             # debug log (can be noisy at high frequency)
             self.get_logger().debug(f"Published to {topic}: {msg.data}")
+        
+        # Log every 10 messages to show activity without spamming logs
+        self._message_count += 1
+        if self._message_count % 10 == 0:
+            self.get_logger().info(
+                f"Published {self._message_count} messages to {len(self.topics)} topic(s)"
+            )
 
 
 def main(args=None):

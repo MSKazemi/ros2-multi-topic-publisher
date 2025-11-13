@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ros2-topic-subscriber
+  labels:
+    app: ros2-topic-subscriber
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ros2-topic-subscriber
+  template:
+    metadata:
+      labels:
+        app: ros2-topic-subscriber
+    spec:
+      containers:
+        - name: ros2-topic-subscriber
+          image: ros:humble-ros-core
+          command: ["/bin/bash", "-c", "source /opt/ros/humble/setup.bash && ros2 topic echo /topic1"]
+          env:
+            - name: ROS_DOMAIN_ID
+              value: "0"  # Must match the publisher pod's ROS_DOMAIN_ID
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "200m"
+              memory: "256Mi"
+

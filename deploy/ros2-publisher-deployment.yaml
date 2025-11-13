@@ -18,6 +18,8 @@ spec:
         - name: ros2-multi-topic-publisher
           image: ghcr.io/mskazemi/ros2-multi-topic-publisher:latest
           env:
+            - name: ROS_DOMAIN_ID
+              value: "0"                     # ROS2 domain ID (must match subscriber pods)
             - name: FREQUENCY_HZ
               value: "2.0"                   # publish at 2 Hz
             - name: TOPICS
