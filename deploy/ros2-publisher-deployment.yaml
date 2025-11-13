@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: ros2-multi-topic-publisher
-          image: ghcr.io/YOUR_GH_USERNAME/ros2-multi-topic-publisher:latest
+          image: ghcr.io/mskazemi/ros2-multi-topic-publisher:latest
           env:
             - name: FREQUENCY_HZ
               value: "2.0"
