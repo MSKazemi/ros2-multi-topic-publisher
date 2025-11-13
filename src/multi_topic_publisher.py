@@ -41,11 +41,11 @@ class MultiTopicPublisher(Node):
 
             # Create publishers for each topic
             print(f"Creating publishers for topics: {self.topics}")
-            self.publishers = []
+            self._publishers = []
             for t in self.topics:
                 try:
                     pub = self.create_publisher(String, t, 10)
-                    self.publishers.append(pub)
+                    self._publishers.append(pub)
                     self.get_logger().info(f"Created publisher on topic: {t}")
                     print(f"Successfully created publisher for topic: {t}")
                 except Exception as e:
@@ -73,7 +73,7 @@ class MultiTopicPublisher(Node):
     def timer_callback(self):
         msg = String()
         msg.data = self.payload
-        for pub, topic in zip(self.publishers, self.topics):
+        for pub, topic in zip(self._publishers, self.topics):
             pub.publish(msg)
             # debug log (can be noisy at high frequency)
             self.get_logger().debug(f"Published to {topic}: {msg.data}")
