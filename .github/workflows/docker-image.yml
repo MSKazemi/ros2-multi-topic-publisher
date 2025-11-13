@@ -3,7 +3,7 @@ name: Build and Push ROS2 Publisher Image
 on:
   push:
     branches: ["main"]
-  # optional: build on tags too
+  # You can also enable tag builds if you want:
   # tags:
   #   - "v*"
 
