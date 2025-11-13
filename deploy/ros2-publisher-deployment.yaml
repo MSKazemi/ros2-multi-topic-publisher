@@ -16,19 +16,11 @@ spec:
     spec:
       containers:
         - name: ros2-multi-topic-publisher
-          image: YOUR_DOCKERHUB_USERNAME/ros2-multi-topic-publisher:latest
+          image: ghcr.io/YOUR_GH_USERNAME/ros2-multi-topic-publisher:latest
           env:
             - name: FREQUENCY_HZ
-              value: "2.0"                   # publish at 2 Hz
+              value: "2.0"
             - name: TOPICS
-              value: "/topic1,/topic2"       # comma-separated topics
+              value: "/topic1,/topic2"
             - name: PAYLOAD
               value: "hello from k8s + ROS2"
-          # Optional resources
-          resources:
-            requests:
-              cpu: "100m"
-              memory: "128Mi"
-            limits:
-              cpu: "500m"
-              memory: "256Mi"
