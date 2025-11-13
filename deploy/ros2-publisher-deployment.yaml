@@ -19,8 +19,15 @@ spec:
           image: ghcr.io/mskazemi/ros2-multi-topic-publisher:latest
           env:
             - name: FREQUENCY_HZ
-              value: "2.0"
+              value: "2.0"                   # publish at 2 Hz
             - name: TOPICS
-              value: "/topic1,/topic2"
+              value: "/topic1,/topic2"       # comma-separated topics
             - name: PAYLOAD
               value: "hello from k8s + ROS2"
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
