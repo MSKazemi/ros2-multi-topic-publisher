@@ -1,0 +1,41 @@
+# ros2-multi-topic-publisher
+
+> A minimal ROS 2 (Humble) Python node that publishes std_msgs/String messages to multiple ROS 2 topics at a configurable frequency. Fully configured via environment variables, packaged as a Docker image (GHCR), and deployable on Kubernetes.
+
+ros2-multi-topic-publisher is an open-source ROS 2 example node for publishing to many topics from a single process.
+It helps you generate steady std_msgs/String traffic on one or more ROS 2 topics without writing any code.
+Use it when you need a lightweight publisher to test ROS 2 subscribers, DDS discovery, or ROS 2 running inside Docker and Kubernetes.
+It is configured entirely through the environment variables TOPICS, PAYLOAD, FREQUENCY_HZ, and ROS_DOMAIN_ID.
+It is not a full ROS 2 (ament/colcon) package and is not intended for production robotics workloads.
+
+## Facts
+
+- Language: Python (rclpy)
+- ROS 2 distribution: Humble (Ubuntu 22.04, ros:humble-ros-core base image)
+- Node name: multi_topic_publisher
+- Message type: std_msgs/String
+- Behavior: publishes the same payload to every configured topic on a fixed-rate timer (QoS depth 10)
+- Configuration (environment variables):
+  - TOPICS: comma-separated topic list (default /chatter)
+  - PAYLOAD: string sent to every topic (default "hello from ROS2 in k8s")
+  - FREQUENCY_HZ: publish rate in Hz, must be > 0 (default 1.0)
+  - ROS_DOMAIN_ID: DDS domain ID, must match subscribers (default 0)
+- Distribution: Docker image built by GitHub Actions and pushed to GitHub Container Registry (ghcr.io/mskazemi/ros2-multi-topic-publisher)
+- Kubernetes: manifests for publisher Deployment, subscriber Deployment (ros2 topic echo), and a topic-checker pod
+
+## Source files
+
+- Node source: src/multi_topic_publisher.py
+- Container build: Dockerfile
+- CI (build + push to GHCR): .github/workflows/docker-image.yml
+- Kubernetes manifests: deploy/ros2-publisher-deployment.yaml, deploy/ros2-subscriber-deployment.yaml, deploy/ros2-topic-checker-pod.yaml
+
+## Links
+
+- Repository: https://github.com/MSKazemi/ros2-multi-topic-publisher
+- README: https://github.com/MSKazemi/ros2-multi-topic-publisher/blob/main/README.md
+- License: Apache-2.0
+
+## Author
+
+- Mohsen Seyedkazemi Ardebili (GitHub: MSKazemi)
