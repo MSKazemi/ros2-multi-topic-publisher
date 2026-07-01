@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using these metadata."
+title: "ros2-multi-topic-publisher"
+abstract: "A minimal ROS 2 (Humble) Python node that publishes std_msgs/String messages to multiple ROS 2 topics at a configurable frequency, configured via environment variables and deployable with Docker and Kubernetes."
+type: software
+authors:
+  - family-names: "Seyedkazemi Ardebili"
+    given-names: "Mohsen"
+    email: "mohsen.seyedkazemi@gmail.com"
+repository-code: "https://github.com/MSKazemi/ros2-multi-topic-publisher"
+url: "https://github.com/MSKazemi/ros2-multi-topic-publisher"
+license: Apache-2.0
+keywords:
+  - ros2
+  - robotics
+  - publisher
+  - rclpy
+  - std-msgs
+  - kubernetes
+  - docker
